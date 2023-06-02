@@ -1,12 +1,46 @@
-# Terribly-Tiny-Tale-Assignment-Partha-Rakshit
-Terribly Tiny Tale Assignment
+# Terribly Tiny Tales Histogram
 
-The above React.js component that displays a histogram of the top 20 most frequently occurring words in a given text file.
+This React application fetches data from the Terribly Tiny Tales API, processes the text data to create a histogram of the top 20 most frequent words, and visualizes the histogram using D3.js. The user can also export the histogram data as a CSV file.
 
-The component defines a state variable "histogramData" using the useState hook, which stores an array of sorted word frequencies. When the user clicks the "Submit" button, the component makes an HTTP GET request to the URL 'https://www.terriblytinytales.com/test.txt' using the axios library to fetch the text data. The text data is split into individual words, and their frequencies are computed and sorted to create an array of the top 20 most frequently occurring words, which is then stored in the histogramData state variable.
+## Table of Contents
 
-The component also defines a handleExportData function that is called when the user clicks the "Export" button. This function generates a CSV file containing the data in histogramData and saves it to the user's local file system using the file-saver library.
+- [Dependencies](#dependencies)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Code Explanation](#code-explanation)
 
-The component uses the useEffect hook to create and render a histogram using the d3.js library when the histogramData state variable is updated. The histogram is rendered within an SVG element, with the axes and bars created using d3.scaleBand, d3.scaleLinear, d3.axisBottom, d3.axisLeft, and d3.selectAll. The svgRef variable is used to reference the SVG element within the component.
+## Dependencies
 
-Finally, the component renders a "Submit" button that triggers the handleFetchData function, and displays the histogram and "Export" button only when histogramData has a length greater than 0.
+The following dependencies are used in this application:
+
+- React: A JavaScript library for building user interfaces.
+- Axios: A popular HTTP client for making API requests.
+- D3.js: A powerful library for creating data visualizations.
+- FileSaver: A library for saving files on the client-side.
+
+## Installation
+
+1. Make sure you have Node.js and npm installed on your system.
+2. Clone the repository.
+3. Navigate to the project directory and run `npm install` to install the required dependencies.
+
+## Usage
+
+1. Run `npm start` to start the development server.
+2. Open your browser and navigate to `http://localhost:3000`.
+3. Click the "Submit" button to fetch the data and display the histogram.
+4. The top 20 most frequent words will be displayed in a histogram.
+5. Click the "Export" button to download the histogram data as a CSV file.
+
+## Code Explanation
+
+The main component of the application is `App`. It has the following state variables and functions:
+
+- `histogramData`: An array that stores the processed histogram data.
+- `handleFetchData`: An asynchronous function that fetches the text data from the API, processes it to calculate word frequencies, and updates the `histogramData` state.
+- `handleExportData`: A function that exports the histogram data as a CSV file using the `file-saver` library.
+- `svgRef`: A React ref that is used to reference the SVG element for the histogram visualization.
+
+The `React.useEffect` hook is used to create the histogram visualization using D3.js whenever the `histogramData` state is updated.
+
+The component renders a "Submit" button, which, when clicked, calls the `handleFetchData` function to fetch and process the data. If the `histogramData` array is not empty, the component also renders the histogram visualization and an "Export" button, which, when clicked, calls the `handleExportData` function to export the data as a CSV file.
